@@ -75,6 +75,11 @@ export class FirestoreService {
     collectionName: Collection,
     orderByField?: string
   ): Promise<T[]> {
+    // For development/demo, always use hardcoded data for itineraries
+    if (collectionName === 'itineraries') {
+      return HARDCODED_ITINERARIES as T[];
+    }
+    
     try {
       const q = orderByField 
         ? query(collection(db, collectionName), orderBy(orderByField))
@@ -83,13 +88,7 @@ export class FirestoreService {
       const querySnapshot = await getDocs(q);
       
       if (querySnapshot.empty) {
-        // Return hardcoded data as fallback
-        switch (collectionName) {
-          case 'itineraries':
-            return HARDCODED_ITINERARIES as T[];
-          default:
-            return [];
-        }
+        return [];
       }
       
       return querySnapshot.docs.map(doc => ({
@@ -98,13 +97,7 @@ export class FirestoreService {
       })) as T[];
     } catch (error) {
       console.error(`Error getting all ${collectionName} documents:`, error);
-      // Return hardcoded data on error
-      switch (collectionName) {
-        case 'itineraries':
-          return HARDCODED_ITINERARIES as T[];
-        default:
-          return [];
-      }
+      return [];
     }
   }
 

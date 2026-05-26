@@ -1,12 +1,13 @@
 import type { Itinerary, JournalPost } from '../types';
 import { getStaticImageUrl } from './image-urls';
-
-
+import { FINDYOURMOROCCO_TOURS } from './tours-data';
 
 export const HARDCODED_ITINERARIES: Itinerary[] = [
+  // Original tour
+  ...FINDYOURMOROCCO_TOURS,
   {
     id: "beach-marrakech",
-    order: 2,
+    order: 11,
     title: "Beach + Marrakech Combo",
     subtitle: "Salt + Spice",
     duration: "7 Days",
