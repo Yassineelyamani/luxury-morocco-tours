@@ -7,7 +7,6 @@ const nextConfig: NextConfig = {
   },
 
   trailingSlash: true,
-  distDir: "out",
 
   eslint: {
     ignoreDuringBuilds: true,
