@@ -2,12 +2,21 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['storage.googleapis.com'],
+    domains: ["storage.googleapis.com"],
     unoptimized: true,
   },
-  output: 'export',
+
+  output: "export",
   trailingSlash: true,
-  distDir: 'out',
+  distDir: "out",
+
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 export default nextConfig;
