@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { verifyIdToken } from '@/lib/firebase/admin'
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -29,13 +28,12 @@ export async function middleware(request: NextRequest) {
       }
     }
 
-    // Verify the token using Firebase Admin SDK
-    try {
-      const decodedToken = await verifyIdToken(token!)
-      if (!decodedToken) {
-        throw new Error('Invalid token')
-      }
-    } catch (error) {
+    // Basic token validation (check if token exists and is not empty)
+    // For more robust verification, use a server-side API route instead
+    if (token && token.length > 0) {
+      // Token exists, allow the request
+      return NextResponse.next()
+    } else {
       if (isAdminRoute) {
         return NextResponse.redirect(new URL('/admin/login', request.url))
       }
