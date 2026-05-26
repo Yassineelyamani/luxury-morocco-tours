@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     domains: ['storage.googleapis.com', 'images.unsplash.com'],
     unoptimized: true,
   },
-  output: 'export',
+ 
   trailingSlash: true,
   distDir: 'out',
   eslint: {
