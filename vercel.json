@@ -1,0 +1,21 @@
+{
+  
+  "rewrites": [
+    
+    {
+      
+      "source": "/(.*)",
+      
+      "destination": "/client/out/$1"
+      
+    }
+    
+  ]
+  
+}
+
+
+
+
+
+
